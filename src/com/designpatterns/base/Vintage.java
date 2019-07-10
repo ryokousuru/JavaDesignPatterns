@@ -9,6 +9,6 @@ public class Vintage extends RoadBike {
     }
 
     public Vintage(WheelInterface wheel) {
-        this(wheel, BikeColor.CHROME)
+        this(wheel, BikeColor.CHROME);
     }
 }

@@ -9,6 +9,6 @@ public abstract class MountainBike extends AbstractBike {
     }
 
     protected MountainBike(WheelInterface wheel) {
-        this(wheel, BikeColor.RED);
+        this(wheel, BikeColor.BLACK);
     }
 }
