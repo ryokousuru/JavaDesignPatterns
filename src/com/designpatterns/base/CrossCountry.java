@@ -11,4 +11,8 @@ public class CrossCountry extends MountainBike {
     public CrossCountry(WheelInterface wheel) {
         this(wheel, BikeColor.WHITE);
     }
+    @Override
+    public float getPrice() {
+        return 850.00f;
+    }
 }

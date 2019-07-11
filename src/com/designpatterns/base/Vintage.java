@@ -11,4 +11,9 @@ public class Vintage extends RoadBike {
     public Vintage(WheelInterface wheel) {
         this(wheel, BikeColor.CHROME);
     }
+
+    @Override
+    public float getPrice() {
+        return 710.00f;
+    }
 }

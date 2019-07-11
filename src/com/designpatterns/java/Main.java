@@ -1,23 +1,61 @@
 package com.designpatterns.java;
+import adapter.UltraWheel;
+import adapter.UltraWheelAdapter;
 import com.designpatterns.abstractfactory.*;
-import com.designpatterns.base.BikeInterface;
-import com.designpatterns.base.NarrowWheel;
-import com.designpatterns.base.RoadBike;
-import com.designpatterns.base.Touring;
+import com.designpatterns.base.*;
 import com.designpatterns.builder.BikeBuilder;
 import com.designpatterns.builder.BikeDirector;
 import com.designpatterns.builder.RoadBikeBuilder;
 import com.designpatterns.builder.RoadBikeDirector;
+import com.designpatterns.decorator.CustomGripOption;
+import com.designpatterns.decorator.GoldFrameOption;
+import com.designpatterns.facade.BikeFacade;
 import com.designpatterns.singleton.SerialNumberGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        singletonExample();
+        facadeExample();
+        //decoratorExample();
+        //adapterExample();
+        //singletonExample();
         //builderExample();
         //abstractFactoryExample();
 	// write your code here
     } //the end of the Main method
+
+    private static void facadeExample() {
+        BikeFacade facade = new BikeFacade();
+        facade.prepareForSale(new DownHill(new WideWheel(24)));
+    }
+
+    private static void decoratorExample() {
+        BikeInterface myTourBike = new Touring(new NarrowWheel(24));
+        System.out.println(myTourBike);
+
+        myTourBike = new CustomGripOption(myTourBike);
+        System.out.println(myTourBike);
+
+        myTourBike = new GoldFrameOption(myTourBike);
+        System.out.println(myTourBike);
+    }
+
+    private static void adapterExample() {
+        UltraWheel ultraWheel = new UltraWheel(28);
+        List<WheelInterface> wheels = new ArrayList<>();
+        wheels.add(new NarrowWheel(24));
+        wheels.add(new NarrowWheel(20));
+        wheels.add(new WideWheel(24));
+        wheels.add(new UltraWheelAdapter(ultraWheel));
+        wheels.add(new UltraWheelAdapter(new UltraWheel(26)));
+
+        for(WheelInterface wheel : wheels) {
+            System.out.println(wheel);
+        }
+    } // the end of the method
 
     private static void singletonExample() {
         System.out.println("Generating the Serial Numbers");
