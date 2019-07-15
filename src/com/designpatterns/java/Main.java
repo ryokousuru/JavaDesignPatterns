@@ -16,6 +16,8 @@ import com.designpatterns.observer.GearBox;
 import com.designpatterns.observer.SpeedMonitor;
 import com.designpatterns.observer.Speedometer;
 import com.designpatterns.singleton.SerialNumberGenerator;
+import com.designpatterns.visitor.WheelDiagnostics;
+import com.designpatterns.visitor.WheelInventory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,7 +26,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        ObserverExample2();
+        visitorExample();
+        //ObserverExample2();
         //ObserverExample1();
         //iteratorExample2();
         //iteratorExample1();
@@ -35,7 +38,13 @@ public class Main {
         //builderExample();
         //abstractFactoryExample();
 	// write your code here
-    } //the end of the Main method
+    } // the end of the Main method
+
+    private static void visitorExample() {
+    WheelInterface wheel = new WideWheel(24);
+    wheel.acceptVisitor(new WheelDiagnostics());
+    wheel.acceptVisitor(new WheelInventory());
+    }
 
     private static void ObserverExample2() {
         com.designpatterns.observer2.Speedometer speed
